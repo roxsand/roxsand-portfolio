@@ -1,0 +1,112 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background: linear-gradient(to bottom, #fbf9f1, #aad7d9); */
+    padding: 20px; 
+  }
+  
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; /* Space between image and text */
+    width: 80%;
+    max-width: 1400px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-container {
+    max-width: 250px;
+    max-height: 460px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .profile-pic {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #222222;
+  }
+  
+  .text-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: flex-start;
+    text-align: left;
+}
+  
+  .name {
+    font-size: 3.5rem; 
+    font-weight: bold;
+    color: #333;
+    line-height: 1.2; 
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.name span {
+    color: #92c7cf;
+}
+  
+  .greeting {
+    font-size: 1rem;
+    color: #666;
+    margin: 10px 0 20px;
+    text-align: left;
+  }
+  
+  .download-button {
+    background: #92c7cf;
+    color: white;
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    align-self: flex-start;
+    margin: 0; 
+}
+  
+  .download-button:hover {
+    background: #aad7d9;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .content-grid {
+      grid-template-columns: 1fr; /* Stack vertically on smaller screens */
+    }
+  
+    .image-container {
+      max-width: 120px; /* Smaller image size on mobile */
+      max-height: 120px;
+    }
+  
+    .name {
+      font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+  
+    .greeting {
+      font-size: 0.9rem;
+    }
+  
+    .download-button {
+      font-size: 0.9rem; /* Adjust button size */
+    }
+  }
