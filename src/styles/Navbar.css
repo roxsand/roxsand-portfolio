@@ -1,105 +1,124 @@
 .navbar {
-    position: fixed;
-    top: 20px;
-    left: 50px;
-    right: 50px;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
-    border-radius: 15px;
-    padding: 10px 20px;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-    z-index: 1000;
-  }
-  
+  position: fixed;
+  top: 20px;
+  left: 50px;
+  right: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 15px;
+  padding: 10px 20px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Navbar Links */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px; /* Space between links */
+}
+
+.nav-links li {
+  margin: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #D7D3BF; 
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #92c7cf; /* Hover color */
+}
+
+/* Social Media Icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: #fff;
+  font-size: 1.5rem; /* Icon size */
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #92c7cf; /* Hover color */
+}
+
+/* Mobile Menu */
+.menu-toggle {
+  display: none; /* Hide by default */
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menu-toggle .hamburger-icon {
+  font-size: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
   }
-  
-  /* Navbar Links */
-  .nav-links {
-    display: flex;
-    list-style: none;
-    gap: 30px; /* Space between links */
-  }
-  
-  .nav-links li {
-    margin: 0;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #D7D3BF; 
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  .nav-links a:hover {
-    color: #92c7cf; /* Hover color */
-  }
-  
-  /* Social Media Icons */
-  .social-icons {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .social-icons a {
-    color: #fff;
-    font-size: 1.5rem; /* Icon size */
-    transition: color 0.3s ease;
-  }
-  
-  .social-icons a:hover {
-    color: #92c7cf; /* Hover color */
-  }
-  
-  /* Mobile Menu */
+
+  /* Move hamburger to the left */
   .menu-toggle {
-    display: none; /* Hide by default */
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
+    order: -1; /* Moves the hamburger to the left of the social icons */
   }
-  
-  .menu-toggle .hamburger-icon {
-    font-size: 2rem;
+
+  .social-icons {
+    order: 1; /* Move social icons to the right */
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background-color: #0a192f;
-      flex-direction: column;
-      gap: 20px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    }
-  
-    .nav-links.open {
-      display: flex; /* Show menu when open */
-    }
-  
-    .nav-links a {
-      font-size: 1.5rem;
-    }
-  
-    .menu-toggle {
-      display: block; /* Show hamburger icon on mobile */
-    }
+
+  .menu-toggle {
+    display: block; /* Show hamburger icon on mobile */
   }
-  
+
+  .nav-links {
+    display: none; /* Initially hidden */
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    z-index: 1000;
+    transform: translateY(-20px);
+    backdrop-filter: blur(5px); /* Adds blur for better transparency */
+    border-radius: 10px; /* Optional: Rounded corners */
+    opacity: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    background-color: rgba(19, 25, 34, 0.8); /* Transparent background */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    transform: translateY(0);
+    display: flex; /* Show menu when open */
+  }
+}

@@ -40,7 +40,11 @@ const Navbar = () => {
           </a>
         </div>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-          <i className={`hamburger-icon ${menuOpen ? 'open' : ''}`}></i>
+          {menuOpen ? (
+            <i className="fas fa-times hamburger-icon"></i> 
+          ) : (
+            <i className="fas fa-bars hamburger-icon"></i>
+          )}
         </button>
       </div>
     </nav>

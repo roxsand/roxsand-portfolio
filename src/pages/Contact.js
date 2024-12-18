@@ -1,53 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
 import '../styles/Contact.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Contact = () => {
-    // State to handle form data
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        message: ''
+        message: '',
     });
 
+    const [emailError, setEmailError] = useState('');
+    const dialogRef = useRef(null);
+
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        if (name === 'email') {
+            validateEmail(value);
+        }
+
+        setFormData({ ...formData, [name]: value });
     };
 
-    // Handle form submission
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        setEmailError(email && !emailRegex.test(email) ? 'Please enter a valid email address.' : '');
+    };
+
+    const showDialog = (message) => {
+        if (dialogRef.current) {
+            dialogRef.current.querySelector('.dialog-message').textContent = message;
+            dialogRef.current.showModal();
+            setTimeout(() => dialogRef.current.close(), 5000);
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setTimeout(() => {
-            const alert = document.querySelector('.alert');
-            if (alert) {
-                alert.style.display = 'none';
-            }
-        }, 5000); // Dismiss after 5 seconds
+        if (emailError) {
+            showDialog('Please correct the errors before submitting.');
+            return;
+        }
 
-        emailjs.send(
-            'service_0uztorh', 
-            'template_3mt8wo9', 
-            formData,
-            '_Q3rGfyaNlr9Y1xXg'
-        ).then(
-            (result) => {
-                console.log('Email successfully sent!', result.text);
-                alert('Message sent successfully!');
-                // Reset form fields
-                setFormData({ name: '', email: '', message: '' });
-            },
-            (error) => {
-                console.error('Failed to send email:', error.text);
-                alert('Failed to send message. Please try again.');
-            }
-        );
+        emailjs
+            .send('service_0uztorh', 'template_3mt8wo9', formData, '_Q3rGfyaNlr9Y1xXg')
+            .then(
+                () => {
+                    showDialog('Message sent successfully!');
+                    setFormData({ name: '', email: '', message: '' });
+                },
+                () => showDialog('Failed to send message. Please try again.')
+            );
     };
 
     return (
         <div className="contact-container">
-            {/* Form Section */}
             <div className="contact-form">
                 <h2>Get in touch.</h2>
                 <form onSubmit={handleSubmit}>
@@ -59,14 +67,17 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                     />
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
+                    <div className="input-wrapper">
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                        {emailError && <p className="error">{emailError}</p>}
+                    </div>
                     <textarea
                         name="message"
                         rows="6"
@@ -75,11 +86,10 @@ const Contact = () => {
                         onChange={handleChange}
                         required
                     ></textarea>
-                    <button type="submit">Send Message</button>
+                    <button type="submit" disabled={emailError}>Send Message</button>
                 </form>
             </div>
 
-            {/* Contact Information Section */}
             <div className="contact-info">
                 <p>
                     If you want to know more about me or my work, or if you would just like to say hello, send me a message. I'd love to hear from you.
@@ -91,6 +101,11 @@ const Contact = () => {
                     <i className="fab fa-github"></i> roxsand
                 </div>
             </div>
+
+            <dialog ref={dialogRef} className="dialog-box">
+                <div className="dialog-message"></div>
+                <button onClick={() => dialogRef.current.close()}>Close</button>
+            </dialog>
         </div>
     );
 };
