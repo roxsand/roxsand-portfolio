@@ -57,28 +57,20 @@ function Projects() {
 
             {/* Links Section */}
             <div className="project-links">
-              {project.link && (
-                <a
-                  href={project.link || "#"}
-                  className={`project-link ${!project.link ? "disabled" : ""}`}
-                  target={project.link ? "_blank" : ""}
-                  rel={project.link ? "noopener noreferrer" : ""}
-                  title={project.link ? "View Deployed Project" : "No Link Available"}
-                >
-                  <i className="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              )}
-              {project.github && (
-                <a
-                  href={project.github || "#"}
-                  className={`project-link ${!project.github ? "disabled" : ""}`}
-                  target={project.github ? "_blank" : ""}
-                  rel={project.github ? "noopener noreferrer" : ""}
-                  title={project.github ? "View GitHub Repository" : "No Link Available"}
-                >
-                  <i className="fa-brands fa-github"></i>
-                </a>
-              )}
+              <a href={project.link || "#"}
+                className={`project-link ${!project.link ? "disabled" : ""}`}
+                target={project.link ? "_blank" : ""}
+                rel={project.link ? "noopener noreferrer" : ""}
+                title={project.link ? "View Deployed Project" : "No Link Available"}>
+                <i className="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+              <a href={project.github || "#"}
+                className={`project-link ${!project.github ? "disabled" : ""}`}
+                target={project.github ? "_blank" : ""}
+                rel={project.github ? "noopener noreferrer" : ""}
+                title={project.github ? "View GitHub Repository" : "No Link Available"}>
+                <i className="fa-brands fa-github"></i>
+              </a>
             </div>
           </div>
         </div>

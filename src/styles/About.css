@@ -64,7 +64,7 @@
   }
   
   .slick-slide > div {
-    margin: 0 15px; /* Add horizontal spacing between slides */
+    margin: 0 15px; 
   }
   
   /* Dots customization */
@@ -78,7 +78,7 @@
   
   /* Slick Previous and Next Button Styling */
   .slick-prev, .slick-next {
-    background-color: white; /* White background */
+    background-color: white;
     border-radius: 50%; 
     width: 40px;
     height: 40px;
@@ -93,11 +93,10 @@
     background-color: #f0f0f0;
   }
   
-  /* Remove default arrows' styles */
   .slick-prev:before, .slick-next:before {
-    color: #333; /* Change arrow color */
+    color: #333; 
     font-size: 16px;
-    opacity: 1; /* Ensure it's visible */
+    opacity: 1;
   }
   
   /* Positioning adjustments */
@@ -110,10 +109,11 @@
   }
   
   /* Responsiveness */
-  @media (max-width: 768px) {
-    .about-container h1 {
-      font-size: 1.8rem;
-    }
+@media (max-width: 768px) {
+  .hobby-card {
+    height: 350px; /* Adjust height for smaller screens */
+    padding: 15px;
+  }
   
     .about-container p {
       font-size: 1rem;
